@@ -42,7 +42,8 @@ def calculate_box_pose(points_box, points_pallet, box_plane_found, pallet_plane_
         Dictionary containing box pose information
     """
     result = {
-        'T_box_camera': None,         # 4x4 transformation matrix
+        'T_box_camera': None,         # 4x4 transformation matrix (box to camera)
+        'T_camera_box': None,         # 4x4 transformation matrix (camera to box)
         'box_corners': None,          # 8x3 array of corner coordinates
         'box_pose_calculated': False, # Flag indicating successful calculation
         'box_dimensions': {           # Box dimensions in meters
@@ -242,16 +243,33 @@ def calculate_box_pose(points_box, points_pallet, box_plane_found, pallet_plane_
                 ))
                 t_box_center = C_box_top - n_box * (result['box_dimensions']['H'] / 2.0)
                 
+                # Create T_box_camera (box to camera transformation)
                 T_box_camera = np.identity(4)
                 T_box_camera[:3, :3] = R_box
                 T_box_camera[:3, 3] = t_box_center
                 
+                # Calculate T_camera_box (camera to box transformation)
+                # Inverse of the transformation matrix
+                T_camera_box = np.identity(4)
+                # Transpose of rotation matrix = inverse for orthogonal matrices
+                R_camera_box = R_box.T
+                # Translation vector in the new coordinate system
+                t_camera_box = -np.dot(R_camera_box, t_box_center)
+                
+                T_camera_box[:3, :3] = R_camera_box
+                T_camera_box[:3, 3] = t_camera_box
+                
+                # Alternative direct inversion method
+                # T_camera_box = np.linalg.inv(T_box_camera)
+                
                 result['R_box'] = R_box
                 result['t_box_center'] = t_box_center
                 result['T_box_camera'] = T_box_camera
+                result['T_camera_box'] = T_camera_box
                 result['box_pose_calculated'] = True
                 
                 print("Calculated Box Pose (T_box_camera):\n", np.round(T_box_camera, 3))
+                print("\nCalculated Camera Pose (T_camera_box):\n", np.round(T_camera_box, 3))
                 
                 # 5. Calculate Corners
                 box_corners = get_bounding_box_corners(

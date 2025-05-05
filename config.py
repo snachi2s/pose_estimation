@@ -31,9 +31,9 @@ class Config:
     """Configuration class for all parameters used in the application"""
     
     # File paths
-    INTRINSICS_FILE = "intrinsics.npy"
-    COLOR_FILE = "one-box.color.npdata.npy"
-    DEPTH_FILE = "one-box.depth.npdata.npy"
+    INTRINSICS_FILE = "data/intrinsics.npy"
+    COLOR_FILE = "data/one-box.color.npdata.npy"
+    DEPTH_FILE = "data/one-box.depth.npdata.npy"
     
     # Depth filtering thresholds
     INITIAL_MIN_DEPTH_THRESHOLD = 0.1

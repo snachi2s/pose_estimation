@@ -92,6 +92,14 @@ def main():
             Config.BOX_PALLET_MIN_POINTS
         )
         
+        # Save the camera to object transformation matrix (if calculated)
+        if box_pose_result['box_pose_calculated'] and box_pose_result['T_camera_box'] is not None:
+            try:
+                np.save('camera_to_box_transform.npy', box_pose_result['T_camera_box'])
+                print("\nCamera to box transformation matrix saved to 'camera_to_box_transform.npy'")
+            except Exception as e:
+                print(f"Error saving transformation matrix: {e}")
+        
         # Visualize results
         print("\nPreparing 3D visualization...")
         visualize_results(
