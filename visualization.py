@@ -5,7 +5,6 @@ Handles 3D visualization of point cloud and box detection results
 
 import numpy as np
 import matplotlib.pyplot as plt
-import traceback
 from config import Config
 
 def visualize_results(points_box, colors_box, points_pallet, colors_pallet, 
@@ -168,4 +167,3 @@ def visualize_results(points_box, colors_box, points_pallet, colors_pallet,
         
     except Exception as e:
         print(f"Error during visualization: {e}")
-        traceback.print_exc()
