@@ -1,0 +1,47 @@
+_BASE_: [
+  '../runtime.yml',
+  '_base_/mask_rcnn_r50_fpn.yml',
+  '_base_/mask_fpn_reader.yml',
+]
+weights: output/mask_rcnn_r50_fpn_1x_coco/model_final
+
+metric: COCO
+num_classes: 1
+
+TrainDataset:
+  name: COCODataSet
+  image_dir: images/train2017
+  anno_path: annotations/instances_train2017.json
+  dataset_dir: dataset/coco
+  data_fields: ['image', 'gt_bbox', 'gt_class', 'gt_poly', 'is_crowd']
+
+EvalDataset:
+  name: COCODataSet
+  image_dir: images/val2017
+  anno_path: annotations/instances_val2017.json
+  dataset_dir: dataset/coco
+
+TestDataset:
+  name: ImageFolder
+  anno_path: annotations/instances_val2017.json # also support txt (like VOC's label_list.txt)
+  dataset_dir: dataset/coco # if set, anno_path will be 'dataset_dir/anno_path'
+
+epoch: 50
+
+LearningRate:
+  base_lr: 0.01
+  schedulers:
+  - !PiecewiseDecay
+    gamma: 0.1
+    milestones: [8, 11]
+  - !LinearWarmup
+    start_factor: 0.001
+    steps: 1000
+
+OptimizerBuilder:
+  optimizer:
+    momentum: 0.9
+    type: Momentum
+  regularizer:
+    factor: 0.0001
+    type: L2
