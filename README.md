@@ -35,7 +35,11 @@ A modular system for detecting and estimating the pose of boxes in point cloud d
    ```
    python main.py
    ```
-   
+
+# Visualization of the result
+
+![image](data/image.png)
+
    
 ## Algorithm Overview
 
