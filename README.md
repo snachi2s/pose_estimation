@@ -8,9 +8,9 @@ This is a custom README to replicate the training and inference pipeline for car
 
 # Some important notes
 
-- In the task sheet, it was given that I need to 'detect and segment boxes' thus I chose Instance Segmentation as the task. I have a good hands on with semantic segmentation but I thought it would be better to use instance segmentation as it is more aligned with the task.
+- In the task sheet, it was given that I need to "detect and segment boxes," thus I chose Instance Segmentation as the task. I have a good hands on with semantic segmentation but I thought it would be better to use instance segmentation as it is more aligned with the task.
 
-- Also, I did not use `YOLO` models as it is already proven and also easy to train.
+I did not use `YOLO` models because they are easy to train. I put myself in a position to use models other than YOLO. 
 
 # Training Setup
 
@@ -194,8 +194,9 @@ python tools/infer.py -c configs/mask_rcnn/carton_mask_rcnn_r50_1x.yml -o use_gp
 
 - To test the trained model and run the inference on new images, follow the steps below:
 
-NOTE: Due to some issues I could not put the trained model into a cloud. Instead I pushed the model here in the `output` directory.
+Download the trained model from the link below and place it in the `output` directory.
 
+!(Here is the link to the trained model)[https://drive.google.com/file/d/1kxhHcfO1LmjW1sY2or02TKlQmyuYtF61/view?usp=sharing]
 ```python 
 python tools/infer.py -c configs/mask_rcnn/carton_mask_rcnn_r50_1x.yml -o use_gpu=True weights=output/model_final.pdparams --infer_img=<input_image> --use_vdl=True --save_results=True
 
