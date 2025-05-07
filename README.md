@@ -196,7 +196,7 @@ python tools/infer.py -c configs/mask_rcnn/carton_mask_rcnn_r50_1x.yml -o use_gp
 
 Download the trained model from the link below and place it in the `output` directory.
 
-!(Here is the link to the trained model)[https://drive.google.com/file/d/1kxhHcfO1LmjW1sY2or02TKlQmyuYtF61/view?usp=sharing]
+!(Here is the link to the trained model)[https://drive.google.com/drive/folders/1FuwQwYWwmZR2JASXvsWk7trTmVIMa_K5?usp=sharing]
 ```python 
 python tools/infer.py -c configs/mask_rcnn/carton_mask_rcnn_r50_1x.yml -o use_gpu=True weights=output/model_final.pdparams --infer_img=<input_image> --use_vdl=True --save_results=True
 
