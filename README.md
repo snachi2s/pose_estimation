@@ -11,6 +11,9 @@ A modular system for detecting and estimating the pose of boxes in point cloud d
    ```
    git clone https://github.com/snachi2s/pose_estimation.git
    ```
+   ```
+   cd pose_estimation
+   ```
 3. Build the docker container with the necessary requirements using the dockerfile
    ```
    docker build -t box-detection:latest .
