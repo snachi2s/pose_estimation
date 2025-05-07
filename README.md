@@ -12,6 +12,25 @@ This is a custom README to replicate the training and inference pipeline for car
 
 - Also, I did not use `YOLO` models as it is already proven and also easy to train.
 
+# Training Setup
+
+- **Model:** MaskRCNN
+- **Backbone:** ResNet50 (ImageNet pretrained)
+
+- **Learning Rate:** 0.01 (learning rate scheduler is used)
+- **Learning Rate Scheduler:** Piecewise Decay 
+- **Regularizer:** L2
+
+
+- **Augmentation:** RandomHorizontalFlip, ColorJitter, Multi-scaling (Resize), Normalize
+- **Optimizer:** SGD
+- **Batch Size:** 4
+- **Epochs:** 50
+
+
+- Trained models are stored in the `output` directory. `model_final.pdparams` is the final model after training.
+
+
 # Environment Setup
 
 ## Requirements:
@@ -169,3 +188,16 @@ python tools/infer.py -c configs/mask_rcnn/carton_mask_rcnn_r50_1x.yml -o use_gp
 ![four](results/2740.jpg)
 ### output 5
 ![five](results/3617.jpg)
+
+
+## Runining inference with the trained model
+
+- To test the trained model and run the inference on new images, follow the steps below:
+
+NOTE: Due to some issues I could not put the trained model into a cloud. Instead I pushed the model here in the `output` directory.
+
+```python 
+python tools/infer.py -c configs/mask_rcnn/carton_mask_rcnn_r50_1x.yml -o use_gpu=True weights=output/model_final.pdparams --infer_img=<input_image> --use_vdl=True --save_results=True
+
+```
+
