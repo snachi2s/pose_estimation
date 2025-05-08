@@ -2,6 +2,13 @@
 
 A modular system for detecting and estimating the pose of boxes in point cloud data. This application processes depth data to segment the scene, detect box and pallet planes, and calculate the box's orientation and dimensions.
 
+# Branches
+
+The repository contains two branches, 
+
+- main --> geometrical approach
+- detection --> deep learning based approach
+
 ## Usage
 
 ## Using Docker 
