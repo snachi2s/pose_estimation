@@ -17,7 +17,7 @@ I did not use `YOLO` models because they are easy to train. I put myself in a po
 - **Model:** MaskRCNN
 - **Backbone:** ResNet50 (ImageNet pretrained)
 
-- **Learning Rate:** 0.01 (learning rate scheduler is used)
+- **Learning Rate:** 0.01 (base learning rate and dynamically fixed over the epochs by using learning rate scheduler)
 - **Learning Rate Scheduler:** Piecewise Decay 
 - **Regularizer:** L2
 
